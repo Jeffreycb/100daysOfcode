@@ -10,8 +10,9 @@ for char in chosen_word:
 print(list_spaces)
 guess=""
 guessed_letters=""
-
+#player health
 health=100
+#x=number of "_" remaining
 x=0
 for _ in range(len(list_spaces)):
     x+=1
@@ -24,10 +25,12 @@ while health>0 and x>0:
         letter=chosen_word[position]
         if letter == guess:
             list_spaces[position]=letter
+            #removes "_" each time letter is correctly guessed and populated into list_spaces
             x-=1
             print (x)
         else:
             #print("Wrong")
+            #to reduce player health when incorrect, 
             health-=1
     print (list_spaces)
 if health>0:
