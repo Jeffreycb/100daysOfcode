@@ -69,7 +69,6 @@ guess=""
 guessed_letters=""
 #player health
 health=5
-#x=number of "_" remaining
 end_of_game=False
 
 while end_of_game!=True and health>0:
@@ -80,12 +79,18 @@ while end_of_game!=True and health>0:
         letter=chosen_word[position]
         if letter == guess:
             list_spaces[position]=letter
-        else:
-            #print("Wrong")
-            #to reduce player health when incorrect, 
-            health-=6
-            print(stages[health])
-    print (list_spaces)
+            print(list_spaces)
+            print(f"your current guessed letters are: {guessed_letters}")
+    if "_" not in list_spaces:
+        end_of_game=True
+    if guess not in chosen_word:
+        health-=1
+        print(stages[health])
+        print(list_spaces)
+        print(f"your current guessed letters are: {guessed_letters}")
+
+        if health==0:
+            end_of_game=True
 if health>0:
     print("You won!")
 else:
