@@ -3,21 +3,76 @@
 import random
 bank=["subway", "abruptly", "bandwagon", "microwave", "peekaboo", "pajama", "wave", "jackpot", "money", "buffalo", "buzzard", "kazoo"]
 chosen_word=bank[random.randint(0,len(bank)-1)]
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
 print(chosen_word)
 list_spaces=[]
 for char in chosen_word:
     list_spaces+="_"
+print(stages[6])
 print(list_spaces)
 guess=""
 guessed_letters=""
 #player health
-health=100
+health=5
 #x=number of "_" remaining
-x=0
-for _ in range(len(list_spaces)):
-    x+=1
-print (x)
-while health>0 and x>0:
+end_of_game=False
+
+while end_of_game!=True and health>0:
     guess=input("please choose a letter to guess the word\n").lower()
     guessed_letters+=guess
     
@@ -25,13 +80,11 @@ while health>0 and x>0:
         letter=chosen_word[position]
         if letter == guess:
             list_spaces[position]=letter
-            #removes "_" each time letter is correctly guessed and populated into list_spaces
-            x-=1
-            print (x)
         else:
             #print("Wrong")
             #to reduce player health when incorrect, 
-            health-=1
+            health-=6
+            print(stages[health])
     print (list_spaces)
 if health>0:
     print("You won!")
